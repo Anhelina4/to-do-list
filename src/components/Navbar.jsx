@@ -1,9 +1,11 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { UserAuth } from '../context/AuthContext';
+import { Box, Button, Col, Row, Text, Title } from '@qonsoll/react-design'
+
+import { Link } from 'react-router-dom'
+import React from 'react'
+import { UserAuth } from '../context/AuthContext'
 
 const Navbar = () => {
-  const { user, logOut } = UserAuth();
+  const { user, logOut } = UserAuth()
 
   const handleSignOut = async () => {
     try {
@@ -14,17 +16,36 @@ const Navbar = () => {
   }
 
   return (
-    <div className='flex justify-between bg-gray-200 w-full p-4'>
-      <h1 className='text-center text-2xl font-bold'>
-        Firebase Google Auth & Context
-      </h1>
-      {user?.displayName ? (
-        <button onClick={handleSignOut}>Logout</button>
-      ) : (
-        <Link to='/signin'>Sign in</Link>
+    <>
+      {!user?.displayName && (
+        <Row display="flex" h="center" v="center">
+          <Col cw="auto" h="center" mb={4}>
+            <Title level={3}>Welcome!</Title>
+            <Text>
+              To procceed using this to-do list you have to sign in. Let`s do
+              it!
+            </Text>
+          </Col>
+        </Row>
       )}
-    </div>
-  );
-};
+      <Row
+        display="flex"
+        h={!user?.displayName ? 'center' : 'right'}
+        v="center"
+        mb={4}
+      >
+        <Col cw="auto">
+          {user?.displayName ? (
+            <Button onClick={handleSignOut}>Logout</Button>
+          ) : (
+            <Link to="/signin">
+              <Button type="primary">Sign in</Button>
+            </Link>
+          )}
+        </Col>
+      </Row>
+    </>
+  )
+}
 
-export default Navbar;
+export default Navbar

@@ -1,11 +1,10 @@
-import React from 'react';
-import { Route, Routes } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Protected from './components/Protected';
-import { AuthContextProvider } from './context/AuthContext';
-import Account from './pages/Account';
-import Home from './pages/Home';
-import Signin from './pages/Signin';
+import { Account, Home, Signin, TaskEdit } from 'pages'
+import { Route, Routes } from 'react-router-dom'
+
+import { AuthContextProvider } from './context/AuthContext'
+import Navbar from './components/Navbar'
+import Protected from './components/Protected'
+import React from 'react'
 
 function App() {
   return (
@@ -13,10 +12,10 @@ function App() {
       <AuthContextProvider>
         <Navbar />
         <Routes>
-          <Route path='/' element={<Home />} />
-          <Route path='/signin' element={<Signin />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/signin" element={<Signin />} />
           <Route
-            path='/account'
+            path="/account"
             element={
               <Protected>
                 <Account />
@@ -26,7 +25,7 @@ function App() {
         </Routes>
       </AuthContextProvider>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

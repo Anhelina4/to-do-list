@@ -1,6 +1,6 @@
-import './index.css'
 import '@qonsoll/react-design/dist/styles/styles.css'
 import '@qonsoll/react-design/dist/styles/vars/index.css'
+import './index.css'
 
 import App from './App'
 import { BrowserRouter } from 'react-router-dom'
