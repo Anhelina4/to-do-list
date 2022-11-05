@@ -1,9 +1,9 @@
 import React from 'react'
 
-const ListList = () => {
+const CategoryList = () => {
   return (
     <div>ListList</div>
   )
 }
 
-export default ListList
+export default CategoryList

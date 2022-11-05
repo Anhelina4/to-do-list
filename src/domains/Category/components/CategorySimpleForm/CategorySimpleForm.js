@@ -1,26 +1,31 @@
 import { Button, Col, Input, Row } from '@qonsoll/react-design'
 import React, { useState } from 'react'
+import { createDocument, getId } from 'services'
 
 import { Form } from 'antd'
 import { UserAuth } from 'context/AuthContext'
-import { createDocument } from 'services'
 
-const ListSimpleForm = ({ showListForm, setShowListForm }) => {
+const CategorySimpleForm = ({ showCategoryForm, setShowCategoryForm }) => {
   const [form] = Form.useForm()
   const { user } = UserAuth()
 
+  const categoryId = getId('categories')
   const onSubmit = async (values) => {
     form.resetFields()
-    setShowListForm(false)
-    await createDocument('lists', { ...values, authorId: user?.uid, tasks: [] })
+    setShowCategoryForm(false)
+    await createDocument('categories', {
+      ...values,
+      _id: categoryId,
+      userId: user?.uid
+    })
   }
 
   return (
     <>
-      {showListForm && (
+      {showCategoryForm && (
         <Form form={form} onFinish={onSubmit}>
           <Row noGutters>
-            <Col>List title</Col>
+            <Col>Category title</Col>
           </Row>
           <Form.Item name="title">
             <Input />
@@ -32,7 +37,10 @@ const ListSimpleForm = ({ showListForm, setShowListForm }) => {
               </Button>
             </Col>
             <Col cw="auto">
-              <Button type="secondary" onClick={() => setShowListForm(false)}>
+              <Button
+                type="secondary"
+                onClick={() => setShowCategoryForm(false)}
+              >
                 Cancel
               </Button>
             </Col>
@@ -43,4 +51,4 @@ const ListSimpleForm = ({ showListForm, setShowListForm }) => {
   )
 }
 
-export default ListSimpleForm
+export default CategorySimpleForm

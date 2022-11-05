@@ -23,16 +23,21 @@ const Signin = () => {
       await createDocument(collection, data, id)
     }
     if (user !== null && Object.keys(user).length !== 0) {
-      console.log('user', user)
       createUsrInDB(
         'users',
         {
           name: user?.displayName || null,
+          surname: user?.displayName || null,
+          fatherName: user?.displayName || null,
           email: user?.email || null,
           emailVerified: user?.emailVerified || null,
           avatarUrl: user?.photoURL || null,
           _id: user?.uid || null,
-          adress: null
+          adress: null,
+          registrationDate: new Date().toISOString(),
+          lastLoginDate: new Date().toISOString(),
+          birthDate: null,
+          phone: null
         },
         user?.uid
       )
@@ -43,7 +48,14 @@ const Signin = () => {
   return (
     <Row h="center">
       <Col cw="auto">
-        <GoogleButton onClick={handleGoogleSignIn} />
+        <GoogleButton
+          onClick={handleGoogleSignIn}
+          style={{
+            backgroundColor: 'var(--ql-color-accent1)',
+            borderRadius:
+              '0 var(--ql-border-radius-default) var(--ql-border-radius-default) 0'
+          }}
+        />
       </Col>
     </Row>
   )

@@ -2,6 +2,7 @@ import { Account, Home, Signin, TaskEdit } from 'pages'
 import { Route, Routes } from 'react-router-dom'
 
 import { AuthContextProvider } from './context/AuthContext'
+import { GlobalProvider } from 'context/GlobalContext'
 import Navbar from './components/Navbar'
 import Protected from './components/Protected'
 import React from 'react'
@@ -18,7 +19,9 @@ function App() {
             path="/account"
             element={
               <Protected>
-                <Account />
+                <GlobalProvider>
+                  <Account />
+                </GlobalProvider>
               </Protected>
             }
           />

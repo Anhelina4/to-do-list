@@ -6,7 +6,7 @@ import React from 'react'
 const AddBtn = ({ onClick, children }) => {
   return (
     <>
-      <Button type="ghost" onClick={onClick}>
+      <Button type="primary" onClick={onClick} px={!children && 2}>
         <Box display="flex">
           <Icon component={<PlusOutlined />} mr={children && 2} />
           {children}

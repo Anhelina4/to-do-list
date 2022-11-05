@@ -6,4 +6,8 @@
 body {
   height: inherit;
   background: #fbfafa;
+  padding:8px;
+}
+.anticon svg{
+  height:16px;
 }

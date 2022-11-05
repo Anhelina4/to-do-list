@@ -1,12 +1,14 @@
 import { Box, Button, Col, Row, Text, Title } from '@qonsoll/react-design'
 
+import { ArrowLeftOutlined } from '@ant-design/icons'
 import { Link } from 'react-router-dom'
 import React from 'react'
 import { UserAuth } from '../context/AuthContext'
+import { useNavigate } from 'react-router-dom'
 
 const Navbar = () => {
   const { user, logOut } = UserAuth()
-
+  let navigate = useNavigate()
   const handleSignOut = async () => {
     try {
       await logOut()
@@ -34,6 +36,9 @@ const Navbar = () => {
         v="center"
         mb={4}
       >
+        <Col cw="auto">
+          <Button icon={<ArrowLeftOutlined />} onClick={() => navigate(-1)} />
+        </Col>
         <Col cw="auto">
           {user?.displayName ? (
             <Button onClick={handleSignOut}>Logout</Button>
